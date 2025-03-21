@@ -18,5 +18,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 # disable log
 RUN echo "access.log = /dev/null" >> /usr/local/etc/php-fpm.d/www.conf
 
+RUN echo 'pm.max_children = 100' >> /usr/local/etc/php-fpm.d/zz-docker.conf && \
+    echo 'pm.max_requests = 500' >> /usr/local/etc/php-fpm.d/zz-docker.conf
+
 RUN groupmod -o -g 1001 www-data; \
     usermod -o -u 1001 -g www-data www-data
