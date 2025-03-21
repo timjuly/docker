@@ -17,3 +17,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 # disable log
 RUN echo "access.log = /dev/null" >> /usr/local/etc/php-fpm.d/www.conf
+
+RUN groupmod -o -g 1001 www-data; \
+    usermod -o -u 1001 -g www-data www-data
